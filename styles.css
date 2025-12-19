@@ -1,0 +1,322 @@
+:root {
+  --clr-main: #70C887;
+  --clr-main-hover: #1E463E;
+  --clr-correct: #94d5a0;
+  --clr-correct-hover: #b7e3bf;
+  --clr-incorrect: #f9bbb9;
+  --clr-incorrect-hover: #f39895;
+  --clr-disabled: #A0A0A0;
+  --clr-text: #000000;
+  --clr-bg-1: #FBFFF5;
+  --clr-bg-2: #70C887;
+  --clr-bg-3: #49694C;
+  --clr-bg-4: #1E463E;
+  --clr-white: #ffffff;
+
+
+  --font-family-base: "Rubik", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-black: 900;
+}
+
+/* =========================================
+   General
+   ========================================= */
+
+body {
+  color: var(--clr-text);
+  background: var(--clr-bg-1);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-optical-sizing: auto;
+  font-style: normal
+}
+
+
+#intro {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+  url('./assets/Gemini_Generated_Image_5b95da5b95da5b95 (1).png');  background-size: cover;    /* דואג שהתמונה תכסה את כל האזור */
+  background-position: center; /* ממרכז את התמונה */
+  background-repeat: no-repeat; /* מונע מהתמונה לחזור על עצמה */
+}
+
+
+.upper-card{
+  padding-top:2rem;
+  padding-bottom:2rem;
+}
+
+.btn-read-more{
+  color: var(--clr-white);
+  background: var(--clr-bg-3);
+}
+.btn-read-more:hover{
+  color: var(--clr-white);
+  background-color: var(--clr-bg-4);
+
+}
+
+.form-control:focus{
+  border-color: var(--clr-bg-4);
+  box-shadow: 0 0 0 .25rem rgba(30, 70, 62, .25);
+}
+/* Headings */
+h1,
+.h1 {
+  font-weight: var(--font-weight-black);
+}
+
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  font-weight: var(--font-weight-semibold);
+}
+
+#not_found {
+  display: none;
+}
+
+/*search textBox*/
+.search{
+  width: 20%;
+}
+
+/* Alternate section backgrounds to improve visual rhythm */
+section:nth-of-type(even) {
+  background: var(--clr-bg-2);
+}
+
+/* Primary brand utilities mapped onto Bootstrap semantics */
+.bg-brand {
+  background-color: var(--clr-main) ;
+  color: var(--clr-text) ;
+  /* text on main = white */
+}
+
+.bg-quiz{
+  background-color: var(--clr-bg-3) ;
+  color: var(--clr-text) ;
+}
+.bg-question {
+  background-color: var(--clr-bg-1) ;
+}
+
+.text-on-brand {
+  color: var(--clr-white) ;
+}
+
+.text-on-brand{
+  color: var(--clr-text) ;
+
+}
+
+/* Links and focus states with accessible outlines */
+a {
+  color: var(--clr-main);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover,
+a:focus {
+  color: var(--clr-text);
+  background: var(--clr-main);
+  outline: 2px solid var(--clr-main);
+  outline-offset: 2px;
+  text-decoration: none;
+}
+
+
+/* Button theming (keep Bootstrap structure; adjust minimal tokens) */
+.btn-brand {
+  background-color: var(--clr-main);
+  color: var(--clr-text);
+  border: 1px solid var(--clr-main);
+}
+
+.btn-brand:hover,
+.btn-brand:focus-visible {
+  background-color: var(--clr-bg-4);
+  color: var(--clr-white);
+}
+.btn-finish{
+  border: 3px solid var(--clr-bg-4);
+  background-color: transparent;
+  color: var( --clr-bg-4);
+  font-weight: var(--font-weight-semibold);
+}
+.btn-finish:disabled{
+  border: 1px solid var(--clr-disabled);
+  background-color: transparent;
+  color: var( --clr-disabled);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.btn-finish:hover,
+.btn-finish:focus-visible {
+  background-color: var(--clr-bg-4);
+  color: var(--clr-white);
+}
+
+.btn-outline-brand {
+  background-color: transparent;
+  color: var(--clr-white);
+  border: 1px solid var(--clr-main);
+}
+
+.btn-outline-brand:hover,
+.btn-outline-brand:focus-visible {
+  background-color: var(--clr-bg-2);
+  color: var(--clr-white);
+  border-color: var(--clr-main);
+}
+
+.btn-disabled {
+  background-color: var(--clr-disabled) !important;
+  border-color: var(--clr-disabled) !important;
+  color: var(--clr-text) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+  /* keep contrast */
+}
+
+/* Status badges (static, no JS logic) */
+.badge-correct {
+  background-color: var(--clr-correct);
+  color: var(--clr-text);
+}
+
+.badge-incorrect {
+  background-color: var(--clr-incorrect);
+  color: var(--clr-text);
+}
+
+.badge-neutral {
+  background-color: var(--clr-disabled);
+  color: var(--clr-text);
+}
+
+
+/* Card minimal refinements—use Bootstrap spacing */
+.tech-card .card-header {
+  background-color: transparent;
+  border-bottom: none;
+}
+
+.card {
+
+  /*min-width: 16rem;*/
+  /*max-width: 20rem;*/
+  height:20rem;
+  width: 100%;
+  border-radius:0.9rem;
+  font-size: 1rem;
+}
+
+.card-desc {
+  align-content: center;
+}
+/* =========================================
+   Specific
+   ========================================= */
+.img-size{
+  height:auto;
+  width:100%;
+}
+
+/* intro */
+#intro img {
+  max-height: 320px;     
+  width: 100%;
+  height: auto;        
+  object-fit: contain;   
+}
+
+@media (max-width: 767.98px) {
+  #intro img {
+    max-height: 220px;
+  }
+  /*search textBox*/
+  .search{
+    width: 90%;
+  }
+  .img-size{
+    height:auto;
+    width:90%;
+    
+  }
+}
+
+
+
+
+
+
+/* =========================================
+   Quiz validation & feedback visuals
+   ========================================= */
+
+/* Color the question card border based on result */
+#quiz article.is-correct { border-color: var(--clr-correct) !important; }
+#quiz article.is-incorrect { border-color: var(--clr-incorrect) !important; }
+
+/* Space for feedback block */
+#quiz .q-feedback { margin-top: .75rem; }
+
+/* Optional: subtle left border for feedback readability */
+#quiz .q-feedback .alert { border-right: 4px solid rgba(0,0,0,.08); }
+
+
+/* =========================================
+   Anchor scroll offset for sticky header
+   ========================================= */
+
+section {
+  scroll-margin-top: 6rem; 
+}
+
+@media (max-width: 767.98px) {
+  section {
+    scroll-margin-top: 5rem;
+  }
+  
+}
+@media (max-width: 576px) and (min-width: 420px) {
+.img-size{
+  height:auto;
+  width:70%;
+}
+}
+
+/* =========================================
+   Acssibility
+   ========================================= */
+
+   /* Skip-link accessibility */
+.skip-link {
+  position: absolute;
+  top: -1000px;
+  right: 1rem;
+  z-index: 1000;
+  background: var(--clr-main);
+  color: var(--clr-white);
+  padding: .5rem 1rem;
+  border-radius: .25rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid var(--clr-main-hover);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: no-preference) {
+  .nav-link {
+    transition: background-color .2s ease, color .2s ease;
+  }
+}
