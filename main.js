@@ -117,11 +117,7 @@ function finalizeAndCloseLMSConnection() {
 
 
         }, 150);
-        
-        
-        
     }
-    
 }
 
 
@@ -139,10 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
     form = document.getElementById('quiz-form');
     if (!form) return;
 
-    form.addEventListener('reset', handleQuizReset);
-    // Enable  the check button after changes
-    form.addEventListener('input', () => formCheckValidity());
-    form.addEventListener('change', () => formCheckValidity());
+    form.addEventListener('reset', () => setFinalizeDisabled(true));
+    // Enable  the check button after changes formCheckValidity()
+    form.addEventListener('input', () => setFinalizeDisabled(!form.checkValidity()));
+    form.addEventListener('change', () => setFinalizeDisabled(!form.checkValidity()));
 
 
     // Attach the finalize button
@@ -215,7 +211,7 @@ function checkQuiz() {
             case raw.length < 10:
                 msgErr = "נא להזין יותר מ 10 תווים"
                 break;
-            case !(/^[\u0590-\u05FF\s0-9]+$/.test(raw)): // בודק טקסט בעברית בלבד
+            case !(/^[\u0590-\u05FF0-9\s!@#$%^&*()_\-+=\[\]{};:'",.<>/?\\|`~]+$/.test(raw)): // בודק טקסט בעברית בלבד
                 msgErr = "נא להזין טקסט בעברית בלבד"
                 break;
                 
@@ -237,20 +233,13 @@ function checkQuiz() {
     return interactionsBatch;
 }
 
-
-function handleQuizReset() {
-    // disable the final submission button
-    setFinalizeDisabled(true);
-}
-
-
 /* =========================================
    Helpers
    ========================================= */
 
 function setFeedback(article, isCorrect, message, details, noPrefix = false) {
     // wipe previous state
-    article.classList.remove('is-correct', 'is-incorrect');
+    article.classList.remove('is-incorrect');
     const prev = article.querySelector('.q-feedback');
     if (prev) prev.remove();
 
@@ -261,19 +250,18 @@ function setFeedback(article, isCorrect, message, details, noPrefix = false) {
     wrap.setAttribute('aria-live', 'polite');
 
     const alert = document.createElement('div');
-    alert.className = 'alert ' + (isCorrect ? 'alert-success' : 'alert-danger') + ' mb-0';
-    const TEXT_OK = 'מעולה — תשובה נכונה.';
+    alert.className = 'alert ' + 'alert-danger' + ' mb-0';
     const TEXT_ERR = 'הסבר:';
 
     // choose message format
-    const prefix = noPrefix ? '' : `<strong>${isCorrect ? TEXT_OK : TEXT_ERR}</strong> `;
+    const prefix = noPrefix ? '' : `<strong>${TEXT_ERR}</strong> `;
     alert.innerHTML = `${prefix}${message || ''}${details ? `<div class="mt-1 small text-muted">${details}</div>` : ''}`;
 
     wrap.appendChild(alert);
     article.appendChild(wrap);
 
     // color the card border
-    article.classList.add(isCorrect ? 'is-correct' : 'is-incorrect');
+    article.classList.add('is-incorrect');
 }
 // Returns the visible label text for a chosen radio in a given <article>
 function getChosenRadioText(articleEl, name) {
@@ -286,7 +274,7 @@ function getChosenRadioText(articleEl, name) {
 // Clear all feedback (used on reset or before re-check)
 function clearAllFeedback() {
     form.querySelectorAll('article').forEach(a => {
-        a.classList.remove('is-correct', 'is-incorrect');
+        a.classList.remove('is-incorrect');
         const fb = a.querySelector('.q-feedback');
         if (fb) fb.remove();
     });
@@ -299,25 +287,12 @@ function setFinalizeDisabled(isDisabled) {
     if (isDisabled || formSent){
         btn.disabled = true;
         btn.setAttribute('aria-disabled', 'true');
+        clearAllFeedback();
     } else {
         btn.disabled = false;
         btn.removeAttribute('aria-disabled');
     }
 }
-
-function formCheckValidity() {
-    const btn = document.getElementById('btn-finalize');
-    if (!btn) return;
-    if (form.checkValidity() && !formSent){
-        btn.disabled = false;
-        btn.removeAttribute('aria-disabled');
-    }
-    else{
-        btn.disabled = true;
-        btn.setAttribute('aria-disabled', 'true');
-    }
-}
-
 
 // Modal helpers 
 function showModal(id) {
