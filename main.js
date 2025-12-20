@@ -91,10 +91,6 @@ function finalizeAndCloseLMSConnection() {
         const interactions=interactionsBatch;
         const score=100;
         
-        //pipwerks.SCORM.set('cmi.core.score.raw', '100');
-        //pipwerks.SCORM.set('cmi.core.score.min', '100');
-        //pipwerks.SCORM.set('cmi.core.score.max', '100');
-        
         const passingScore=60;
         let status='completed';
         if(score>=passingScore){
