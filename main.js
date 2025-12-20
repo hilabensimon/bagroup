@@ -87,18 +87,8 @@ function finalizeAndCloseLMSConnection() {
         } 
         
         showModal('modal-submit');
-        
-        const interactions=interactionsBatch;
-        const score=100;
-        
-        const passingScore=60;
-        let status='completed';
-        if(score>=passingScore){
-            status='passed';
-        } else{
-            status='failed';
-        }
-        pipwerks.SCORM.set('cmi.core.lesson_status',status);
+ 
+        pipwerks.SCORM.set('cmi.core.lesson_status','passed');
         pipwerks.SCORM.save();
 
         pipwerks.SCORM.set('cmi.core.exit', 'logout');
