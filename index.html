@@ -75,7 +75,7 @@
 
     <!-- Subjects Section -->
 <section id="subjects" class="upper-card">
-  <input type="text" class="form-control mt-3 mx-auto search form-control" id="searchSubject" placeholder="חיפוש בזמן אמת"/>
+  <input type="text" class="form-control mt-3 mx-auto search form-control" id="searchSubject" placeholder="חיפוש"/>
     <div class="container">
       <h3 class="text-danger mt-5 text-center" id="not_found" >לא נמצאו תוצאות</h3>
       <div class="row mt-3 justify-content-center" id="card"></div>
@@ -86,13 +86,13 @@
     <!-- Quiz Section as a FORM -->
     <section id="quiz" class="py-5 bg-quiz">
       <div class="container">
-        
+        <h2 class="h2 mb-5 text-center"><strong>שאלון סיכום למורים/ות</strong></h2>
         <form id="quiz-form" action="#" method="post" aria-describedby="quiz-help">
           <div class="vstack gap-4">
 
             <!-- Q1 -->
             <article class="p-3 border rounded-3 bg-question">
-              <h5 class="mb-2 h5" id="q1-title">האם למדתי לבגרות במתמטיקה או בפיזיקה?
+              <h5 class="mb-2 h5" id="q1-title">מהו מקצוע שלי?
                 <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">שדה חובה</span>
               </h5>
               <fieldset aria-labelledby="q1-title">
@@ -110,7 +110,7 @@
             
             <!-- Q2 -->
             <article class="p-3 border rounded-3 bg-question">
-              <h3 class="h5 mb-2" id="q2-title">למה הצטרפת לבגרופ?
+              <h3 class="h5 mb-2" id="q2-title">כמה הרגשת שהשפעת על התלמידים במוכנות לבגרות?
                 <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">שדה חובה</span>
               </h3>
               <fieldset aria-labelledby="q2-title">
@@ -119,25 +119,25 @@
                   <div class="col-12 ">
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="q2" id="q2a" value="A" required>
-                      <label class="form-check-label" for="q2a">הכנה מיטבית לבגרות</label>
+                      <label class="form-check-label" for="q2a">במידה רבה מאוד</label>
                     </div>
                   </div>
                   <div class="col-12 ">
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="q2" id="q2b" value="B">
-                      <label class="form-check-label" for="q2b">קבלת עזרה ותמיכה בלמידה</label>
+                      <label class="form-check-label" for="q2b">במידה רבה</label>
                     </div>
                   </div>
                   <div class="col-12 ">
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="q2" id="q2c" value="C">
-                      <label class="form-check-label" for="q2c">תרגול וחשיפה לשאלות מגוונות</label>
+                      <label class="form-check-label" for="q2c">במידה בינונית</label>
                     </div>
                   </div>
                   <div class="col-12 ">
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="q2" id="q2d" value="D">
-                      <label class="form-check-label" for="q2d">למידה משותפת ומסגרת חברתית</label>
+                      <label class="form-check-label" for="q2d">כלל לא</label>
                     </div>
                   </div>
                 </div>
@@ -146,7 +146,7 @@
 
             <!-- Q3: text input -->
             <article class="p-3 border rounded-3 bg-question form-control" dir="rtl" lang="he">
-              <h3 class="h5 form-label" id="q3-title">                האם הרגשת נוח לשאול שאלות ולהשתתף בדיונים בקבוצה? פרט/י
+              <h3 class="h5 form-label" id="q3-title">                אילו שינויים היית מציע/ה על מנת לשפר את הפרוייקט?
               
 
               <label  for="q3input">
@@ -184,7 +184,7 @@
             הגשת הלומדה לסיום
           </button>
           <p class="small mb-0">
-            ניתן להגיש את היחידה רק לאחר מענה על כלל השאלות. לחיצה על הכפתור תסמן את השלמת הלמידה ותשמור את
+            ניתן להגיש את השאלון רק לאחר מענה על כלל השאלות. לחיצה על הכפתור תסמן את השלמת הלמידה ותשמור את
             ההתקדמות שלך במערכת.
           </p>
         </div>
