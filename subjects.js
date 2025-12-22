@@ -1,4 +1,5 @@
 let filterArray=[];
+//initialize the subjects content
 let subjectsArray=[
     {
         id:1,
@@ -53,6 +54,7 @@ let subjectsArray=[
 
 ShowSubjects(subjectsArray);
 
+// creates a list of subjects
 function ShowSubjects(currentArray){
     document.getElementById("card").innerText="";
     for(let i=0; i<currentArray.length; i++){
@@ -71,7 +73,6 @@ function ShowSubjects(currentArray){
 
 
 // live searching
-
 document.getElementById("searchSubject").addEventListener("keyup", function(e){
     let text = e.target.value;
     filterArray = subjectsArray.filter(subject=> subject.name.includes(text) || subject.desc.includes(text));
