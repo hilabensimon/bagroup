@@ -1,8 +1,9 @@
 /* =========================================
    SCORM Handeling
    ========================================= */
-let isScormConnected = false;
+let isScormConnected = false; 
 
+//SCORM connected on load
 document.addEventListener('DOMContentLoaded', () => {
     if (!window.pipwerks || !pipwerks.SCORM) {
         console.warn('[SCORM] Wrapper not found.');
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+//Fetching the data from SCORM
 function fetchLearnerData() {
     if(isScormConnected){
         const learnerName=pipwerks.SCORM.get('cmi.core.student_name')||'';
@@ -32,7 +34,7 @@ function fetchLearnerData() {
         console.log('Name = ' + learnerName);
         console.log('ID = ' + learnerId);
         console.log('Status = ' + status);
-        console.log('Score = ' + score);
+        //console.log('Score = ' + score);
         console.log('---------------------------');
         
         const nameEle=document.getElementById('learner-name');
@@ -43,7 +45,7 @@ function fetchLearnerData() {
     }
 }
 
-
+//Saves and close the connection to SCORM before unload
 window.addEventListener('beforeunload', saveAndCloseConnection);
 function saveAndCloseConnection() {
     if(isScormConnected){
@@ -52,6 +54,8 @@ function saveAndCloseConnection() {
     }
 }
 
+
+//Send interactions batch to the LMS
 function sentInatractionsBatchToLMS(interactions){
     if(isScormConnected){
         if (!Array.isArray(interactions) || interactions.length === 0){
@@ -77,6 +81,7 @@ function sentInatractionsBatchToLMS(interactions){
     }
 }
 
+// Handles intentional submission 
 function finalizeAndCloseLMSConnection() {
     if(isScormConnected){
         setFinalizeDisabled(true);
@@ -158,7 +163,7 @@ function checkQuiz() {
     //Batch saves all the interactions for sanding (restart)
     interactionsBatch = [];
 
-    // Q1: radios name="q1"
+    // Q1
     (function () {
         const article = document.getElementById('q1-title')?.closest('article');
         if (!article) return;
@@ -172,7 +177,7 @@ function checkQuiz() {
     })();
 
 
-    // Q2: numeric
+    // Q2
     (function () {
         const article = document.getElementById('q2-title')?.closest('article');
         if (!article) return;
@@ -186,7 +191,7 @@ function checkQuiz() {
         });
     })();
     
-    // Q3: open text — neutral (no grading)
+    // Q3
     (function () {
         const article = document.getElementById('q3-title')?.closest('article');
         if (!article) return;
@@ -197,7 +202,7 @@ function checkQuiz() {
             case raw.length < 10:
                 msgErr = "נא להזין יותר מ 10 תווים"
                 break;
-            case !(/^[\u0590-\u05FF0-9\s!@#$%^&*()_\-+=\[\]{};:'",.<>/?\\|`~]+$/.test(raw)): // בודק טקסט בעברית בלבד
+            case !(/^[\u0590-\u05FF0-9\s!@#$%^&*()_\-+=\[\]{};:'",.<>/?\\|`~]+$/.test(raw)): //only if the text is not in hebrew
                 msgErr = "נא להזין טקסט בעברית בלבד"
                 break;
                 
