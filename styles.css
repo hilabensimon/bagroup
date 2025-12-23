@@ -113,6 +113,10 @@ section:nth-of-type(even) {
   color: var(--clr-text) ;
 
 }
+.text-danger{
+  background-color:var(--clr-white);
+  border-radius: 0.8rem;
+}
 
 /* Links and focus states with accessible outlines */
 a {
